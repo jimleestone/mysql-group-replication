@@ -8,7 +8,9 @@ BEGIN
   GRANT REPLICATION SLAVE ON *.* TO repl@'%';
   flush privileges;
   change master to master_user='root' for channel 'group_replication_recovery';
+  RESET MASTER;
   START GROUP_REPLICATION;
+  SET @@GLOBAL.group_replication_bootstrap_group=0;
   -- SELECT * FROM performance_schema.replication_group_members;
 END $$
 DELIMITER ;
@@ -20,6 +22,7 @@ DELIMITER $$
 CREATE PROCEDURE set_as_slave ()
 BEGIN
   change master to master_user='repl' for channel 'group_replication_recovery';
+  RESET MASTER;
   START GROUP_REPLICATION;
   SET @@global.read_only=1;
   -- SELECT * FROM performance_schema.replication_group_members;

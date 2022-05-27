@@ -62,7 +62,7 @@ loose_group_replication_start_on_boot                    = OFF
 # The name of the group which this server instance belongs to.
 # Must be a valid and _uniq_ UUID.
 # This UUID is used internally when setting GTIDs for Group Replication events in the binary log.
-loose_group_replication_group_name                       = aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+loose_group_replication_group_name                       = 6e0a5f13-e126-43f1-a108-599b29df9298
 
 # A list of group members to which a joining member can connect to obtain details of all the current group members.
 # The joining member uses these details to select and connect to a group member to obtain the data needed for synchrony with the group.
@@ -77,4 +77,5 @@ loose_group_replication_single_primary_mode              = ON
 # The default is that checks are disabled. In single-primary mode, this option must be disabled on all group members.
 loose_group_replication_enforce_update_everywhere_checks = OFF
 
-
+# due to https://github.com/docker-library/mysql/issues/541#issuecomment-463320181
+secure_file_priv = NULL
